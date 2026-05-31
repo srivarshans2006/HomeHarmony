@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+    HomeHarmony
+</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script
+        src="https://kit.fontawesome.com/6f3f2c95b0.js"
+        crossorigin="anonymous"></script>
+        
+
+</head>
+
+
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <div class="logo-section">
+
+            <h2>
+                HomeHarmony
+            </h2>
+
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="/dashboard">
+
+                <i class="fa-solid fa-table-columns"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+            <a href="/tasks">
+
+                <i class="fa-solid fa-list-check"></i>
+
+                <span>
+                    Tasks
+                </span>
+
+            </a>
+
+            <a href="#">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <span>
+                    Shopping
+                </span>
+
+            </a>
+
+            <a href="#">
+
+                <i class="fa-solid fa-wallet"></i>
+
+                <span>
+                    Expenses
+                </span>
+
+            </a>
+
+            <a href="#">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>
+                    Notifications
+                </span>
+
+            </a>
+
+            <a href="#">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-content">
+    
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

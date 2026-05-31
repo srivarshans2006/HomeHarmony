@@ -1,0 +1,291 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+    <div>
+
+        <h1>
+            Dashboard
+        </h1>
+
+        <p>
+            Welcome back to your household workspace
+        </p>
+
+    </div>
+
+    <div class="profile-section">
+
+        <div class="notification-icon">
+
+            <i class="fa-solid fa-bell"></i>
+
+        </div>
+
+        <div class="profile-card">
+
+            <img
+                src="https://i.pravatar.cc/100"
+                alt="Profile">
+
+            <div>
+
+                <h4>
+                    {{ current_user.full_name }}
+                </h4>
+
+                <p>
+                    Household Member
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- STATS -->
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-icon blue">
+
+            <i class="fa-solid fa-list-check"></i>
+
+        </div>
+
+        <div>
+
+            <h2>{{ task_count }}</h2>
+
+            <p>Total Tasks</p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon purple">
+
+            <i class="fa-solid fa-wallet"></i>
+
+        </div>
+
+        <div>
+
+            <h2>₹0</h2>
+
+            <p>Monthly Expenses</p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon green">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+        </div>
+
+        <div>
+
+            <h2>0</h2>
+
+            <p>Shopping Items</p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon orange">
+
+            <i class="fa-solid fa-users"></i>
+
+        </div>
+
+        <div>
+
+            <h2>{{ member_count }}</h2>
+
+            <p>Household Members</p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon blue">
+
+            <i class="fa-solid fa-house"></i>
+
+        </div>
+
+        <div>
+
+            <h2>
+                {{ household.household_name }}
+            </h2>
+
+            <p>
+                Household Name
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon purple">
+
+            <i class="fa-solid fa-link"></i>
+
+        </div>
+
+        <div>
+
+            <h2>
+                {{ household.invite_code }}
+            </h2>
+
+            <p>
+                Invite Code
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="content-grid">
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h3>
+                Recent Tasks
+            </h3>
+
+        </div>
+
+       {% if recent_tasks %}
+
+    {% for task in recent_tasks %}
+
+    <div class="task-item">
+
+        <div>
+
+            <h4>
+                {{ task.title }}
+            </h4>
+
+            <p>
+                {{ task.description }}
+            </p>
+
+        </div>
+
+        {% if task.status == "Pending" %}
+
+<span class="status pending">
+    Pending
+</span>
+
+{% elif task.status == "In Progress" %}
+
+<span class="status progress">
+    In Progress
+</span>
+
+{% elif task.status == "Completed" %}
+
+<span class="status completed">
+    Completed
+</span>
+
+{% endif %}
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>
+        No tasks created yet.
+    </p>
+
+{% endif %}
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h3>
+                Recent Expenses
+            </h3>
+
+        </div>
+
+        <p>
+            No expenses added yet.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h3>
+                Household Members
+            </h3>
+
+        </div>
+
+        {% for member in members %}
+
+        <div class="expense-item">
+
+            <div>
+
+                <h4>
+                    {{ member.full_name }}
+                </h4>
+
+                <p>
+                    {{ member.email }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

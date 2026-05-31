@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Join Household</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+            font-family: "Poppins", sans-serif;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh;
+
+            background:
+            linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .join-card{
+            width: 420px;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 24px;
+
+            box-shadow:
+            0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        h1{
+            margin-bottom: 12px;
+
+            color: #111827;
+        }
+
+        p{
+            color: #6b7280;
+
+            margin-bottom: 30px;
+        }
+
+        .input-group{
+            margin-bottom: 25px;
+        }
+
+        label{
+            display: block;
+
+            margin-bottom: 10px;
+
+            font-size: 14px;
+
+            font-weight: 500;
+        }
+
+        input{
+            width: 100%;
+
+            padding: 14px;
+
+            border-radius: 14px;
+
+            border: 1px solid #d1d5db;
+
+            outline: none;
+
+            font-size: 15px;
+        }
+
+        input:focus{
+            border-color: #4f46e5;
+        }
+
+        button{
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            background:
+            linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="join-card">
+
+        <h1>
+            Join Household
+        </h1>
+
+        <p>
+            Enter your household invite code
+        </p>
+
+        <form method="POST">
+
+            <div class="input-group">
+
+                <label>
+                    Invite Code
+                </label>
+
+                <input
+                    type="text"
+                    name="invite_code"
+                    placeholder="Enter invite code">
+
+            </div>
+
+            <button type="submit">
+                Join Household
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

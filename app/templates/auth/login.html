@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | HomeHarmony</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/auth.css') }}">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="main-container">
+
+        <div class="left-panel">
+
+            <div class="brand">
+
+                <h1>HomeHarmony</h1>
+
+                <p>
+                    Smart household collaboration platform
+                </p>
+
+            </div>
+
+            <div class="left-content">
+
+                <h2>
+                    Organize your household smarter.
+                </h2>
+
+                <p>
+                    Manage tasks, shopping lists, expenses and schedules
+                    seamlessly with real-time collaboration.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="right-panel">
+
+            <div class="auth-box">
+
+                <h2>Welcome Back</h2>
+
+                <p class="sub-text">
+                    Sign in to continue
+                </p>
+
+                <form method="POST">
+
+                    <div class="input-box">
+
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter your email">
+
+                    </div>
+
+                    <div class="input-box">
+
+                        <label>Password</label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Enter your password">
+
+                    </div>
+
+                    <button class="primary-btn">
+                        Sign In
+                    </button>
+
+                </form>
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <button class="google-btn">
+
+                    <img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                        alt="Google">
+
+                    Continue with Google
+
+                </button>
+
+                <p class="bottom-text">
+
+                    Don’t have an account?
+
+                    <a href="/register">
+                        Create Account
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
