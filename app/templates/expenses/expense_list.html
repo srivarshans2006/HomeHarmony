@@ -1,0 +1,117 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <div>
+
+        <h1>Expenses</h1>
+
+        <p>Manage household expenses</p>
+
+    </div>
+
+    <a
+        href="/create-expense"
+        class="btn-primary">
+
+        + Create Expense
+
+    </a>
+
+</div>
+
+<div class="card">
+
+    <div class="card-header">
+
+        <h3>All Expenses</h3>
+
+    </div>
+
+    {% if expenses %}
+{% for expense in expenses %}
+
+<div class="expense-item">
+
+    <div class="expense-info">
+
+        <h4>
+            {{ expense.title }}
+        </h4>
+
+        <p>
+            ₹{{ expense.amount }}
+        </p>
+
+    </div>
+
+    <div class="expense-actions">
+
+        {% if expense.category == "Food" %}
+            <span class="expense-badge food-badge">
+                Food
+            </span>
+
+        {% elif expense.category == "Bills" %}
+            <span class="expense-badge bills-badge">
+                Bills
+            </span>
+
+        {% elif expense.category == "Shopping" %}
+            <span class="expense-badge shopping-badge">
+                Shopping
+            </span>
+
+        {% elif expense.category == "Transport" %}
+            <span class="expense-badge transport-badge">
+                Transport
+            </span>
+
+        {% else %}
+            <span class="expense-badge other-badge">
+                Other
+            </span>
+
+        {% endif %}
+
+        <a
+        href="{{ url_for('expenses.edit_expense',
+        expense_id=expense.id) }}"
+        class="edit-btn">
+
+            Edit
+
+        </a>
+
+        <a
+        href="{{ url_for('expenses.delete_expense',
+        expense_id=expense.id) }}"
+        class="delete-btn"
+
+        onclick="return confirm(
+        'Delete this expense?'
+        )">
+
+            Delete
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+       
+
+    {% else %}
+
+        <p>No expenses found.</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -31,4 +31,16 @@ class Household(db.Model):
     backref="household",
     lazy=True
     )
+
+    shopping_items = db.relationship(
+    "ShoppingItem",
+    backref="household",
+    lazy=True
+)
+    
+notifications = db.relationship(
+    "Notification",
+    backref="household",
+    lazy=True
+)
     

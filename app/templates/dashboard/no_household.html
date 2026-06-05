@@ -1,0 +1,37 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>
+        No Household Joined
+    </h2>
+
+    <p>
+        You are currently not a member of any household.
+    </p>
+
+    <div class="settings-actions">
+
+        <a
+        href="{{ url_for('household.create_household') }}"
+        class="btn-primary">
+
+            Create Household
+
+        </a>
+
+        <a
+        href="{{ url_for('household.join_household') }}"
+        class="btn-primary">
+
+            Join Household
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

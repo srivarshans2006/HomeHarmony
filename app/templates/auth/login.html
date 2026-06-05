@@ -19,6 +19,15 @@
 </head>
 
 <body>
+    {% if success %}
+
+        <div id="toast" class="toast-success">
+
+            {{ success }}
+
+        </div>
+
+    {% endif %}
 
     <div class="main-container">
 
@@ -58,6 +67,17 @@
                 <p class="sub-text">
                     Sign in to continue
                 </p>
+               {% if error %}
+
+                    <div class="error-message">
+
+                        <i class="fa-solid fa-circle-exclamation"></i>
+
+                        <span>{{ error }}</span>
+
+                    </div>
+
+                {% endif %}
 
                 <form method="POST">
 
@@ -93,15 +113,7 @@
                     <span>OR</span>
                 </div>
 
-                <button class="google-btn">
-
-                    <img
-                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
-                        alt="Google">
-
-                    Continue with Google
-
-                </button>
+                
 
                 <p class="bottom-text">
 
@@ -118,6 +130,25 @@
         </div>
 
     </div>
+
+<script>
+
+setTimeout(function(){
+
+    let toast =
+    document.getElementById(
+        "toast"
+    );
+
+    if(toast){
+
+        toast.style.display =
+        "none";
+    }
+
+},3000);
+
+</script>
 
 </body>
 

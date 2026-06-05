@@ -1,0 +1,88 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <div>
+
+        <h1>
+            Create Shopping Item
+        </h1>
+
+        <p>
+            Add a new item to the shopping list
+        </p>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div class="card-header">
+
+        <h3>
+            Shopping Item Details
+        </h3>
+
+    </div>
+
+    <form method="POST">
+
+        <div class="task-form">
+
+            <div class="form-group">
+
+                <label>
+                    Item Name
+                </label>
+
+                <input
+                type="text"
+                name="item_name"
+                placeholder="Milk, Rice, Eggs..."
+                required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Quantity
+                </label>
+
+                <input
+                type="text"
+                name="quantity"
+                placeholder="2 Litres, 5 Kg, 12 Pieces..."
+                required>
+
+            </div>
+
+            <div class="task-actions">
+
+                <a
+                href="/shopping"
+                class="cancel-btn">
+
+                    Cancel
+
+                </a>
+
+                <button
+                type="submit"
+                class="create-btn">
+
+                    Add Item
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

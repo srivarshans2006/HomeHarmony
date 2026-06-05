@@ -19,9 +19,7 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <script
-        src="https://kit.fontawesome.com/6f3f2c95b0.js"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         
 
 </head>
@@ -30,8 +28,12 @@
 <body>
 
 <div class="dashboard-container">
+    <div class="menu-toggle" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
 
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
+       
 
         <div class="logo-section">
 
@@ -53,47 +55,74 @@
 
             </a>
 
-            <a href="/tasks">
+            {% if current_user.household_id %}
 
-                <i class="fa-solid fa-list-check"></i>
+                <a href="{{ url_for('tasks.task_list') }}">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Tasks</span>
+                </a>
 
-                <span>
-                    Tasks
-                </span>
+                {% else %}
+
+                <a href="#" class="disabled-menu">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Tasks</span>
+                </a>
+
+            {% endif %}
+
+            {% if current_user.household_id %}
+
+                <a href="{{ url_for('shopping.shopping_list') }}">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Shopping</span>
+                </a>
+
+                {% else %}
+
+                <a href="#" class="disabled-menu">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Shopping</span>
+                </a>
+
+            {% endif %}
+            {% if current_user.household_id %}
+
+                <a href="{{ url_for('expenses.expense_list') }}">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span>Expenses</span>
+                </a>
+
+                {% else %}
+
+                <a href="#" class="disabled-menu">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span>Expenses</span>
+                </a>
+
+            {% endif %}
+
+            <a href="{{ url_for('notifications.notification_list') }}" class="notification-link">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    <span>
+                        Notifications
+                    </span>
+
+                    {% if unread_notifications > 0 %}
+
+                    <span class="sidebar-badge">
+
+                        {{ unread_notifications }}
+
+                    </span>
+
+                    {% endif %}
 
             </a>
 
-            <a href="#">
-
-                <i class="fa-solid fa-cart-shopping"></i>
-
-                <span>
-                    Shopping
-                </span>
-
-            </a>
-
-            <a href="#">
-
-                <i class="fa-solid fa-wallet"></i>
-
-                <span>
-                    Expenses
-                </span>
-
-            </a>
-
-            <a href="#">
-
-                <i class="fa-solid fa-bell"></i>
-
-                <span>
-                    Notifications
-                </span>
-
-            </a>
-
-            <a href="#">
+            <a href="{{ url_for('settings.settings') }}">
 
                 <i class="fa-solid fa-gear"></i>
 
@@ -103,9 +132,24 @@
 
             </a>
 
+            <a href="#"
+                onclick="openLogoutModal()">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>Logout</span>
+
+            </a>
+
         </nav>
 
     </aside>
+
+     <div
+            id="overlay"
+            class="overlay"
+            onclick="toggleSidebar()">
+    </div>
 
     <main class="main-content">
     
@@ -116,6 +160,132 @@
     </main>
 
 </div>
+<div
+id="logoutModal"
+class="modal">
+
+    <div class="modal-content">
+
+        <h3>
+            Logout
+        </h3>
+
+        <p>
+            Are you sure you want to logout?
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+            class="cancel-btn"
+            onclick="closeLogoutModal()">
+
+                Cancel
+
+            </button>
+
+            <a
+            href="{{ url_for('auth.logout') }}"
+            class="logout-btn">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function openLogoutModal(){
+
+    document.getElementById(
+        "logoutModal"
+    ).style.display = "flex";
+}
+
+function closeLogoutModal(){
+
+    document.getElementById(
+        "logoutModal"
+    ).style.display = "none";
+}
+
+function openDeleteModal(){
+
+    document.getElementById(
+        "deleteModal"
+    ).style.display = "flex";
+}
+
+function closeDeleteModal(){
+
+    document.getElementById(
+        "deleteModal"
+    ).style.display = "none";
+}
+
+</script>
+
+<div
+id="deleteModal"
+class="modal">
+
+    <div class="modal-content">
+
+        <h3>
+            Delete Account
+        </h3>
+
+        <p>
+
+            This action cannot be undone.
+
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+            class="cancel-btn"
+            onclick="closeDeleteModal()">
+
+                Cancel
+
+            </button>
+
+            <a
+            href="{{ url_for('settings.delete_account') }}"
+            class="logout-btn">
+
+                Delete
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function toggleSidebar(){
+
+    document
+    .getElementById("sidebar")
+    .classList
+    .toggle("active");
+
+    document
+    .getElementById("overlay")
+    .classList
+    .toggle("active");
+}
+
+</script>
 
 </body>
 

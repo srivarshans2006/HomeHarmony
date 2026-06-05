@@ -1,0 +1,92 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <div>
+
+        <h1>
+            Notifications
+        </h1>
+
+        <p>
+            Household activity updates
+        </p>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div class="card-header">
+
+            <h3>
+                Recent Notifications
+            </h3>
+
+            <a
+                href="{{ url_for('notifications.clear_notifications') }}"
+                class="clear-btn">
+
+                Clear All
+
+            </a>
+
+    </div>
+
+    {% if notifications %}
+
+        {% for notification in notifications %}
+
+        <div class="notification-card">
+
+            <div class="notification-header">
+
+                <span class="notification-tag">
+
+                    Activity
+
+                </span>
+
+                <a
+                href="{{ url_for(
+                'notifications.dismiss_notification',
+                notification_id=notification.id
+                ) }}"
+                class="close-btn">
+
+                    ✖
+
+                </a>
+
+            </div>
+
+            <div class="notification-body">
+
+                {{ notification.message }}
+
+            </div>
+
+            <div class="notification-time">
+
+                Recently
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+            No notifications available.
+        </p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

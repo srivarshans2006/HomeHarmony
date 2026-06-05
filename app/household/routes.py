@@ -16,6 +16,8 @@ from app.extensions import db
 
 from app.models.household_model import Household
 
+from app.models.notification_model import Notification
+
 
 household_bp = Blueprint(
     "household",
@@ -44,6 +46,14 @@ def join_household():
             return "Invalid invite code"
 
         current_user.household_id = household.id
+        notification = Notification(
+
+            household_id=household.id,
+
+            message=f"{current_user.full_name} joined the household"
+        )
+
+        db.session.add(notification)
 
         db.session.commit()
 

@@ -1,0 +1,161 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <div>
+
+        <h1>
+            Settings
+        </h1>
+
+        <p>
+            Manage your account settings
+        </p>
+
+    </div>
+
+</div>
+
+<div class="settings-grid">
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h3>
+                Profile Information
+            </h3>
+
+        </div>
+
+        <div class="profile-section-settings">
+
+            <img
+            src="{{ url_for(
+            'static',
+            filename='images/default1.jpg'
+            ) }}"
+            alt="Profile">
+
+            <div>
+
+                <h4>
+                    {{ current_user.full_name }}
+                </h4>
+
+                <p>
+                    {{ current_user.email }}
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Full Name</span>
+
+            <strong>
+                {{ current_user.full_name }}
+            </strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Email</span>
+
+            <strong>
+                {{ current_user.email }}
+            </strong>
+
+        </div>
+
+        <div class="settings-actions">
+
+    <a
+    href="{{ url_for('settings.edit_profile') }}"
+    class="btn-primary">
+
+        Edit Profile
+
+    </a>
+
+    <a
+    href="{{ url_for('settings.change_password') }}"
+    class="btn-primary">
+
+        Change Password
+
+    </a>
+
+    <a
+    href="#"
+    class="delete-btn"
+    onclick="openDeleteModal()">
+
+        <i class="fa-solid fa-trash"></i>
+
+        Delete Account
+
+    </a>
+
+</div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h3>
+                Household Information
+            </h3>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Household Name</span>
+
+            <strong>
+                {{ current_user.household.household_name }}
+            </strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Invite Code</span>
+
+            <strong>
+                {{ current_user.household.invite_code }}
+            </strong>
+
+        </div>
+
+        <div class="settings-actions">
+
+                <a
+                href="{{ url_for('settings.leave_household') }}"
+                class="leave-btn"
+
+                onclick="return confirm(
+                'Are you sure you want to leave this household?'
+                )">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Leave Household
+
+                </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

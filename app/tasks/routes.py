@@ -17,6 +17,8 @@ from app.models.task_model import Task
 
 from app.models.user_model import User
 
+from app.models.notification_model import Notification
+
 
 tasks_bp = Blueprint(
     "tasks",
@@ -69,6 +71,13 @@ def create_task():
         )
 
         db.session.add(task)
+
+        # Create a notification for the assigned user
+        notification = Notification(
+            message=f"{current_user.full_name} created task '{title}'",
+            household_id=current_user.household_id
+        )
+        db.session.add(notification)
 
         db.session.commit()
 

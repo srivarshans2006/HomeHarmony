@@ -10,6 +10,7 @@
 
         <h1>
             Dashboard
+            
         </h1>
 
         <p>
@@ -20,16 +21,26 @@
 
     <div class="profile-section">
 
-        <div class="notification-icon">
+        <div class="notification-icon"onclick="location.href='{{ url_for('notifications.notification_list') }}'">
 
             <i class="fa-solid fa-bell"></i>
+
+            {% if unread_notifications > 0 %}
+
+            <span class="notification-badge">
+
+                {{ unread_notifications }}
+
+            </span>
+
+            {% endif %}
 
         </div>
 
         <div class="profile-card">
 
-            <img
-                src="https://i.pravatar.cc/100"
+              <img
+                src="{{ url_for('static', filename='images/default1.jpg') }}"
                 alt="Profile">
 
             <div>
@@ -64,7 +75,7 @@
 
         <div>
 
-            <h2>{{ task_count }}</h2>
+            <h2>{{ total_tasks }}</h2>
 
             <p>Total Tasks</p>
 
@@ -81,10 +92,9 @@
         </div>
 
         <div>
-
-            <h2>₹0</h2>
-
-            <p>Monthly Expenses</p>
+            <h2>₹{{ total_expenses }}</h2>
+            <p>Total Expenses</p>
+            
 
         </div>
 
@@ -100,7 +110,7 @@
 
         <div>
 
-            <h2>0</h2>
+            <h2>{{ shopping_count }}</h2>
 
             <p>Shopping Items</p>
 
@@ -150,25 +160,35 @@
 
     <div class="stat-card">
 
-        <div class="stat-icon purple">
+    <div class="stat-icon purple">
 
-            <i class="fa-solid fa-link"></i>
-
-        </div>
-
-        <div>
-
-            <h2>
-                {{ household.invite_code }}
-            </h2>
-
-            <p>
-                Invite Code
-            </p>
-
-        </div>
+        <i class="fa-solid fa-link"></i>
 
     </div>
+
+    <div class="invite-section">
+
+        <h2 id="inviteCode">
+
+            {{ household.invite_code }}
+
+        </h2>
+
+        <p>
+            Invite Code
+        </p>
+
+    </div>
+
+    <button
+        class="copy-btn"
+        onclick="copyInviteCode()">
+
+        <i class="fa-solid fa-copy"></i>
+
+    </button>
+
+</div>
 
 </div>
 
@@ -248,9 +268,35 @@
 
         </div>
 
-        <p>
-            No expenses added yet.
-        </p>
+        {% if recent_expenses %}
+
+    {% for expense in recent_expenses %}
+
+    <div class="expense-item">
+
+        <div>
+
+            <h4>
+                {{ expense.title }}
+            </h4>
+
+            <p>
+                ₹{{ expense.amount }}
+            </p>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>
+        No expenses added yet.
+    </p>
+
+{% endif %}
 
     </div>
 
@@ -287,5 +333,25 @@
     </div>
 
 </div>
+
+<script>
+
+function copyInviteCode(){
+
+    const inviteCode =
+    document.getElementById(
+    "inviteCode"
+    ).innerText;
+
+    navigator.clipboard.writeText(
+    inviteCode
+    );
+
+    alert(
+    "Invite code copied!"
+    );
+}
+
+</script>
 
 {% endblock %}
