@@ -6,8 +6,7 @@ from app.config import Config
 from app.extensions import (
     db,
     migrate,
-    login_manager,
-    socketio
+    login_manager
 )
 
 from app.auth.routes import auth_bp
@@ -43,7 +42,7 @@ def create_app():
 
     login_manager.login_view = "auth.login"
 
-    socketio.init_app(app)
+   
 
     app.register_blueprint(auth_bp)
 
